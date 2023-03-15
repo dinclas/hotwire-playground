@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HotwirePlayground</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="min-h-screen w-full bg-gray-900 text-slate-400 flex flex-col items-center">
+    <nav class="w-full border-b border-gray-700 p-4 grid grid-cols-12">
+      <div class="col-span-6 col-start-4 w-full flex">
+        <div class="w-full">
+          <a href="/"><h2 class="text-2xl font-medium">Hotwire Playground</h2></a>
+        </div>
+        <div class="flex items-center justify-end">
+          <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+        </div>
+      </div>
+    </nav>
+    <div class="w-full flex-grow grid grid-cols-12">
+      <div class="border-r border-gray-700 col-span-3 h-full">
+      </div>
+      <main class="col-span-6 py-4">
+        <% if notice.present? || alert.present? %>
+          <div class="flex flex-col gap-4 px-8 pb-4">
+            <% if notice.present? %>
+              <p class="flash bg-slate-700 "><%= notice %></p>
+            <% end %>
+
+            <% if alert.present? %>
+              <p class="flash bg-orange-700"><%= alert %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <%= yield %>
+      </main>
+      <div class="border-l border-gray-700 col-span-3 h-full">
+      </div>
+    </div>
+  </body>
+</html>

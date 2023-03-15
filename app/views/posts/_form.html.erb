@@ -1,0 +1,25 @@
+<%= form_with(model: post, class: "contents") do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :posts_id, value: post.parent&.id %>
+
+  <div class="w-full border-b border-gray-700 px-8 pb-4">
+    <div>
+      <%= form.text_area :text, placeholder: post.parent.present? ? 'Write your reply' : 'What\'s on your mind?', class: "block bg-gray-900 border border-gray-700 rounded w-full mb-4 h-32" %>
+    </div>
+
+    <div class="inline w-full flex justify-end">
+      <%= form.submit "Post", class: "rounded-lg py-2 px-4 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
+  </div>
+<% end %>

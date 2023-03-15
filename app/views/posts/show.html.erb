@@ -1,0 +1,13 @@
+<div class="flex flex-col">
+  <div class="border-gray-700 border-b pb-4">
+    <%= render @post, hide_controls: true %>
+  </div>
+
+  <div class="mt-4">
+    <%= render 'posts/form', post: Post.new(parent: @post) %>
+  </div>
+
+  <div class="post-list">
+    <%= render @post.comments, hide_children: true %>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div>
+  <%= render 'posts/form', post: Post.new %>
+  <div class="post-list">
+    <%= render Post.all.reverse %>
+  </div>
+</div>
