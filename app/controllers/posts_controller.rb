@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy like ]
+  before_action :set_post, only: %i[ show edit update destroy like repost ]
 
   # GET /posts or /posts.json
   def index
@@ -29,6 +29,19 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if user_like.save
+        format.html { redirect_to :root }
+      else
+        format.html { render :show, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # POST /posts/1/repost
+  def repost
+    repost = Post.find_or_initialize_by(user: current_user, repost: @post.repost || @post)
+
+    respond_to do |format|
+      if repost.save
         format.html { redirect_to :root }
       else
         format.html { render :show, status: :unprocessable_entity }
