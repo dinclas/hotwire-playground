@@ -1,10 +1,14 @@
 <div class="flex flex-col">
   <div class="border-gray-700 border-b pb-4">
-    <%= render @post, hide_controls: true %>
+    <%= render @post, hide_controls: false %>
   </div>
 
   <div class="mt-4">
     <%= render 'posts/form', post: Post.new(parent: @post) %>
+  </div>
+
+  <div class="p-4 w-full border-b border-gray-700">
+    <span class="text-xl font-medium">Replies</span>
   </div>
 
   <div class="post-list">

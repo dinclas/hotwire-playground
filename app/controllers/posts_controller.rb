@@ -30,6 +30,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if user_like.save
         format.html { redirect_to :root }
+        format.turbo_stream
       else
         format.html { render :show, status: :unprocessable_entity }
       end

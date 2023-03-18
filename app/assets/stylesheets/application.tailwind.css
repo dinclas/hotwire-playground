@@ -17,5 +17,5 @@
 }
 
 .post-list > .post {
-    @apply border-gray-700 border-b
+    @apply border-gray-700 border-b block
 }
